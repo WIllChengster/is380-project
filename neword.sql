@@ -42,13 +42,26 @@ where supplier_code = &v_supplier_code;
 
 ACCEPT v_order_quant NUMBER PROMPT 'Enter Quantity to Order: '
 
-DEFINE v_new_ord_num = (SELECT MAX(ord_num) +1 FROM ord);
 
 INSERT INTO ord (ord_num, part_num, supplier_code, ord_qty, ord_date)
   VALUES ((SELECT MAX(ord_num) +1 FROM ord), &v_part_num, &v_supplier_code, &v_order_quant, TRUNC(SYSDATE));
 
+set termout off
+SPOOL ./ord_num.sql
+SELECT 'DEFINE v_ord_num= ' || MAX(ord_num)
+from ord;
+SPOOL OFF
 
---select
---    'Your order has been processed. Order number is: ' || &v_new_ord_num
---from ord
---where ord_num = &v_new_ord_num;
+@ ./ord_num.sql
+set termout on
+
+SELECT 'Your order has been processed. Order number is: ' || &v_ord_num
+from ord
+where ord_num = &v_ord_num;
+
+commit;
+
+set feedback on
+set heading on 
+set verify on
+
