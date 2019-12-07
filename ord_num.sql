@@ -1,2 +1,2 @@
 
-DEFINE v_ord_num= 1016
+DEFINE v_ord_num= 1010
