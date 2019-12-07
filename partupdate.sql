@@ -33,7 +33,7 @@ PROMPT Current Inventory Quantity:  &v_part_qtyonhand
 
 PROMPT ** Verify part information:                            **
 PROMPT ** If you DON'T want to update OR Part NOT FOUND,      **
-PROMPT **    Press [CTRL] [C] twice to ABORT                  **
+PROMPT **    Press [CTRL] [C] twice to ABORT      123            **
 PROMPT ** If you wish to continue and update, press [ENTER]   **
 PROMPT
 
@@ -56,3 +56,7 @@ SELECT 'Part Number               : ' || part_num,
 FROM part
 WHERE part_num = &v_part_num;
 COMMIT;
+
+SET FEEDBACK ON
+SET HEADING ON
+SET VERIFY ON
