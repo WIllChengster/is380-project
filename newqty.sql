@@ -1,2 +1,2 @@
 
-DEFINE v_newqty= '140'
+DEFINE v_newqty= 140
